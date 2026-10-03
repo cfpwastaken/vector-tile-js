@@ -322,6 +322,12 @@ export class VectorTileLayer {
         const end = this._pbf.readVarint() + this._pbf.pos;
         return new VectorTileFeature(this._pbf, end, this.extent, this._keys, this._values);
     }
+
+    *[Symbol.iterator]() {
+        for(let i = 0; i < this.length; i++) {
+            yield this.feature(i);
+        }
+    }
 }
 
 /**
